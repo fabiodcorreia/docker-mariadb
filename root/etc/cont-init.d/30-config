@@ -1,0 +1,27 @@
+#!/usr/bin/with-contenv bash
+
+# make folders if required
+mkdir -p \
+	"$DATADIR" \
+	/config/log/mysql \
+  /var/run/mysqld
+
+CONF_FILE="/etc/my.cnf";
+
+# configure my.cnf and mysqld_safe
+#sed -i 's/key_buffer\b/key_buffer_size/g' "$CONF_FILE"
+sed -ri 's/^(bind-address|skip-networking)/;\1/' "/etc/my.cnf.d/mariadb-server.cnf"
+sed -i "s/user='mysql'/user='abc'/g" /usr/bin/mysqld_safe
+
+
+# setup custom cnf file
+[[ ! -f /config/custom.cnf ]] && \
+	cp /defaults/my.cnf /config/custom.cnf
+[[ ! -L /etc/my.cnf.d/custom.cnf && -f /etc/my.cnf.d/custom.cnf ]] && \
+	rm /etc/my.cnf.d/custom.cnf
+[[ ! -L /etc/my.cnf.d/custom.cnf ]] && \
+	ln -s /config/custom.cnf /etc/my.cnf.d/custom.cnf
+
+# set permissions
+chmod -R 777 \
+	/var/run/mysqld

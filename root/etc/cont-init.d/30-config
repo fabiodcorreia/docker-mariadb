@@ -9,7 +9,6 @@ mkdir -p \
 CONF_FILE="/etc/my.cnf";
 
 # configure my.cnf and mysqld_safe
-#sed -i 's/key_buffer\b/key_buffer_size/g' "$CONF_FILE"
 sed -ri 's/^(bind-address|skip-networking)/;\1/' "/etc/my.cnf.d/mariadb-server.cnf"
 sed -i "s/user='mysql'/user='abc'/g" /usr/bin/mysqld_safe
 

@@ -1,3 +1,61 @@
+kind: pipeline
+type: docker
+name: build-test-build
+
+platform:
+  os: linux
+  arch: amd64
+
+trigger:
+  event:
+  - push
+
+steps:
+  - name: build test image
+    image: plugins/docker:linux-amd64
+    settings:
+      username:
+        from_secret: DOCKERHUB_USERNAME
+      password:
+        from_secret: DOCKERHUB_PASSWORD
+      repo: fabiodcorreia/mariadb
+      auto_tag: true
+      auto_tag_suffix: test
+      purge: true
+
+---
+kind: pipeline
+type: docker
+name: docker-test
+
+platform:
+  os: linux
+  arch: amd64
+
+trigger:
+  status:
+  - success
+
+steps:
+  - name: mariadb_test
+    image: fabiodcorreia/mariadb:test
+    ports: [ 3306 ]
+    detach: true
+    pull: always
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      MYSQL_ROOT_PASSWORD: "123123"
+      MYSQL_DATABASE: "dummydb"
+      MYSQL_USER: "dummyuser"
+      MYSQL_PASSWORD: "dummypass"
+    commands:
+      - sleep 60
+      - sh ./test/start.sh
+
+depends_on:
+  - build-test-build
+
 ---
 kind: pipeline
 type: docker

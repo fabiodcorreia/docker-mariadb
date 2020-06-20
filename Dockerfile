@@ -1,4 +1,4 @@
-FROM fabiodcorreia/base-alpine:latest
+FROM fabiodcorreia/base-alpine:1.0.0
 
 # set version label
 ARG BUILD_DATE

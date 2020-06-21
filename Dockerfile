@@ -13,7 +13,7 @@ ENV DATADIR=$CONFIG_DIR/databases
 
 RUN \
   echo "**** install runtime packages ****" && \
-    apk add --no-cache mariadb mariadb-client && \
+    apk add --no-cache mariadb mariadb-client mariadb-server-utils && \
   echo "**** cleanup ****" && \
   rm -rf \
 	  /tmp/* \

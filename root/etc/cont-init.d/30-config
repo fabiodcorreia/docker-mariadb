@@ -3,8 +3,12 @@
 # make folders if required
 mkdir -p \
 	"$DATADIR" \
-	/config/log/mysql \
+  /config/log/mysql \
+  /var/log/mysql \
   /var/run/mysqld
+
+chown -R abc:abc /var/log/mysql
+chmod -R 777 /var/log/mysql
 
 CONF_FILE="/etc/my.cnf";
 
@@ -20,6 +24,16 @@ sed -i "s/user='mysql'/user='abc'/g" /usr/bin/mysqld_safe
 	rm /etc/my.cnf.d/custom.cnf
 [[ ! -L /etc/my.cnf.d/custom.cnf ]] && \
 	ln -s /config/custom.cnf /etc/my.cnf.d/custom.cnf
+
+# setup the log to stderr
+if [ -z "$LOG_TO_FILE" ]; then
+  ln -sf /dev/stdout /var/log/mysql/error.log
+  sed -i 's%/config/log/mysql/error.log%/var/log/mysql/error.log%g' /config/custom.cnf
+  echo "**** Log to Console Enable ****"
+else
+  sed -i 's%/var/log/mysql/error.log%/config/log/mysql/error.log%g' /config/custom.cnf
+  echo "**** Log to File Enable ****"
+fi
 
 # set permissions
 chmod -R 777 \

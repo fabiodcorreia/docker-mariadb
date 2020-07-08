@@ -1,4 +1,4 @@
-FROM fabiodcorreia/base-alpine:1.0.0
+FROM fabiodcorreia/base-alpine:1.0.1
 
 # set version label
 ARG BUILD_DATE
@@ -7,7 +7,6 @@ LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="fabiodcorreia"
 
 # environment variables
-ENV MARIADB_VERSION="10.4.13"
 ENV CONFIG_DIR="/config"
 ENV DATADIR=$CONFIG_DIR/databases
 
@@ -25,6 +24,8 @@ RUN \
 # add local files
 COPY root/ /
 
-# ports and volumes
+# ports
 EXPOSE 3306
+
+# volumes
 VOLUME /config

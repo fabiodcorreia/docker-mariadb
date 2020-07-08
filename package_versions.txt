@@ -9,6 +9,7 @@ coreutils-8.32-r0
 libacl-2.2.53-r0
 libaio-0.3.112-r1
 libattr-2.4.48-r0
+libbz2-1.0.8-r1
 libc-utils-0.7.2-r3
 libcrypto1.1-1.1.1g-r0
 libgcc-9.3.0-r2
@@ -23,11 +24,12 @@ mariadb-10.4.13-r0
 mariadb-client-10.4.13-r0
 mariadb-common-10.4.13-r0
 mariadb-server-utils-10.4.13-r0
-musl-1.1.24-r8
-musl-utils-1.1.24-r8
+musl-1.1.24-r9
+musl-utils-1.1.24-r9
 ncurses-libs-6.2_p20200523-r0
 ncurses-terminfo-base-6.2_p20200523-r0
 pcre-8.44-r0
+perl-5.30.3-r0
 procps-3.3.16-r0
 readline-8.0.4-r0
 scanelf-1.2.6-r0

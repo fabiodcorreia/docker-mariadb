@@ -7,6 +7,11 @@ mkdir -p \
   /var/log/mysql \
   /var/run/mysqld
 
+env-alias "DATABASE_ROOT" "MYSQL_ROOT_PASSWORD"
+env-alias "DATABASE_NAME" "MYSQL_DATABASE"
+env-alias "DATABASE_USER" "MYSQL_USER"
+env-alias "DATABASE_PASS" "MYSQL_PASSWORD"
+
 chown -R abc:abc /var/log/mysql
 chmod -R 777 /var/log/mysql
 

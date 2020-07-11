@@ -65,10 +65,10 @@ The `arch` can be one of the supported architectures described below.
 | PUID                | Set the UserID - [Details](https://github.com/fabiodcorreia/docker-base-alpine#userid--groupid) |
 | PGID                | Set the GroupID - [Details](https://github.com/fabiodcorreia/docker-base-alpine#userid--groupid) |
 | TZ                  | Set the system timezone - [Options](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List) |
-| MYSQL_ROOT_PASSWORD | Set the database root password |
-| MYSQL_DATABASE      | Set the name of the database to be created |
-| MYSQL_USER          | Set the username for the database that will created |
-| MYSQL_PASSWORD      | Set the password for the database user that will created |
+| DATABASE_ROOT       | Set the database root password |
+| DATABASE_NAME       | Set the name of the database to be created |
+| DATABASE_USER       | Set the username for the database that will created |
+| DATABASE_PASS       | Set the password for the database user that will created |
 | REMOTE_SQL          | Set the list of SQL files from an http/https endpoint (comma separated array)|
 | LOG_TO_FILE         | Enable logging to file, `false` by default |
 
